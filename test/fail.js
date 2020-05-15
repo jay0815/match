@@ -8,6 +8,70 @@ describe('test match', () => {
 });
 describe('Result Failed Testing', function () {
 
+  const s = 'a';
+  it('pattern: null, string: a', function () {
+    expect(match(null, s)).to.be.equal(false);
+  })
+  it('pattern: undefined, string: a', function () {
+    expect(match(void 0, s)).to.be.equal(false);
+  })
+
+  const twoByte = "\u039a\u0391\u03a3\u03a3\u0395";
+  const Notbeta = '\u0392';
+  const NotAlphaSigmaEpsilon = '\u0391\u03a3\u0395';
+  it(`pattern: ${Notbeta}, string: ${twoByte}`, function () {
+    expect(match(Notbeta, twoByte)).to.be.equal(false);
+  });
+  it(`pattern: ${NotAlphaSigmaEpsilon}, string: ${twoByte}`, function () {
+    expect(match(NotAlphaSigmaEpsilon, twoByte)).to.be.equal(false);
+  });
+
+  const rs = 'asdf[a-z]+(asdf)?';
+  it(`pattern: (bar)?, string: ${rs}`, function () {
+    expect(match('(bar)?', rs)).to.be.equal(false);
+  });
+
+  // Test cases found in FF
+  const ffString = 'abc';
+  it(`pattern: d, string: ${ffString}`, function () {
+    expect(match('d', ffString)).to.be.equal(false);
+  });
+  it(`pattern: abcd, string: ${ffString}`, function () {
+    expect(match('abcd', ffString)).to.be.equal(false);
+  });
+  it(`pattern: ac, string: ${ffString}`, function () {
+    expect(match('ac', ffString)).to.be.equal(false);
+  });
+  it(`pattern: cd, string: ${ffString}`, function () {
+    expect(match('cd', ffString)).to.be.equal(false);
+  });
+  it(`pattern: de, string: ${ffString}`, function () {
+    expect(match('de', ffString)).to.be.equal(false);
+  });
+  it(`pattern: dcd, string: ${ffString}`, function () {
+    expect(match('dcd', ffString)).to.be.equal(false);
+  });
+  it(`pattern: dcd, string: xyzzy`, function () {
+    expect(match("zy\0", 'xyzzy')).to.be.equal(false);
+  });
+
+  const dots = Array(10000).join(".").toString();
+  it(`pattern: \x01, string: ${dots}`, function () {
+    expect(match('\x01', dots)).to.be.equal(false);
+  });
+  it(`pattern: \0, string: ${dots}`, function () {
+    expect(match("\0", dots)).to.be.equal(false);
+  });
+  // object
+  it(`pattern:  {}, string: Empty object {}`, function () {
+    expect(match({}, "Empty object {}")).to.be.equal(false);
+  });
+  // Array
+  // "Array of size 3", val: new Array(3)
+  it(`pattern:  new Array(3), string: Array of size 3`, function () {
+    expect(match(new Array(3), "Array of size 3")).to.be.equal(false);
+  });
+
   it('pattern: ab, string: ba', function () {
     expect(match('ab', 'ba')).to.be.equal(false);
   })

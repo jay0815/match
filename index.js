@@ -1,7 +1,9 @@
 module.exports.match = function match(pattern, string) {
   if(
-    typeof pattern === 'undefined' || pattern === null ||  typeof pattern+'' !== 'string' ||
-    typeof string === 'undefined' || string === null || typeof string+'' !== 'string'
+    typeof pattern === 'symbol' ||  typeof pattern === 'undefined' ||
+    pattern === null ||  typeof (pattern+'') !== 'string' ||
+    typeof string === 'symbol' || typeof string === 'undefined' ||
+    string === null || typeof (string+'') !== 'string'
   ){
     return false
   }
