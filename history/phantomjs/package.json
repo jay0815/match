@@ -11,11 +11,10 @@
     "chai": "^4.2.0",
     "karma": "^5.0.5",
     "karma-browserify": "^7.0.0",
-    "karma-chrome-launcher": "^3.1.0",
     "karma-jasmine": "^3.1.1",
     "karma-mocha": "^2.0.1",
+    "karma-phantomjs-launcher": "^1.0.4",
     "mocha": "^7.1.2",
-    "puppeteer": "^3.0.4",
     "watchify": "^3.11.1"
   },
   "scripts": {

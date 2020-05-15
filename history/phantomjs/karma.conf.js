@@ -1,7 +1,5 @@
 // Karma configuration
 // Generated on Thu May 14 2020 23:12:45 GMT+0800 (China Standard Time)
-const puppeteer = require('puppeteer');
-process.env.CHROME_BIN = puppeteer.executablePath();
 
 module.exports = function(config) {
   config.set({
@@ -9,9 +7,10 @@ module.exports = function(config) {
     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: '',
 
+
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['mocha', 'browserify'],
+    frameworks: ['mocha'],
 
 
     // list of files / patterns to load in the browser
@@ -28,7 +27,6 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      'test/**.js': [ 'browserify' ]
     },
 
 
@@ -55,9 +53,31 @@ module.exports = function(config) {
     // enable / disable watching file and executing tests whenever any file changes
     autoWatch: true,
 
-    browsers: ['ChromeHeadless'],
+    // start these browsers
+    // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
+    browsers: ['PhantomJS', 'PhantomJS_custom'],
+    //
+    // you can define custom flags
+    customLaunchers: {
+      'PhantomJS_custom': {
+        base: 'PhantomJS',
+        options: {
+          windowName: 'my-window',
+          settings: {
+            webSecurityEnabled: false
+          },
+        },
+        flags: ['--load-images=true'],
+        debug: true
+      }
+    },
 
-    plugins: ['karma-mocha', 'karma-browserify', 'karma-chrome-launcher'],
+    phantomjsLauncher: {
+      // Have phantomjs exit if a ResourceError is encountered (useful if karma exits without killing phantom)
+      exitOnResourceError: true
+    },
+
+    plugins: ['karma-mocha', 'karma-browserify', 'karma-phantomjs-launcher'],
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
