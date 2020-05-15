@@ -1,5 +1,5 @@
 # match
-> **A tool** which can accept **any parrtern** _( typeof parrtern === string )_ and
+> **A tool** design by __FSM(Finite State Machine) model__ which can accept **any parrtern** _( typeof parrtern === string )_ and
 **determin** if the target is in it
 
 ## Test
