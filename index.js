@@ -1,9 +1,15 @@
 module.exports.match = function match(pattern, string) {
-  if(pattern === '' && typeof string !== 'undefined' && string !== null){
+  if(
+    typeof pattern === 'undefined' || pattern === null ||  typeof pattern+'' !== 'string' ||
+    typeof string === 'undefined' || string === null || typeof string+'' !== 'string'
+  ){
+    return false
+  }
+  if(pattern === ''){
     return true
   }
   // 全部状态
-  const state = pattern.split('');
+  const state = (pattern+'').split('');
   // 记录状态迁移游标
   let index = 0;
   // 当前探索的位置

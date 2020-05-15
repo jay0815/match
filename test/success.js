@@ -53,11 +53,11 @@ describe('Result Success Testing', function () {
   })
 
 
-  it('pattern: aaaaab, string: aaaaaab', function () {
-    expect(match('aaaaab', 'aaaaaab')).to.be.equal(true);
+  it('pattern: aab, string: aaab', function () {
+    expect(match('aab', 'aaab')).to.be.equal(true);
   })
-  it('pattern: abbb, string: abaaabbb', function () {
-    expect(match('abbb', 'abaaabbb')).to.be.equal(true);
+  it('pattern: abbb, string: abaabbb', function () {
+    expect(match('abbb', 'abaabbb')).to.be.equal(true);
   })
 
 });

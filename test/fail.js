@@ -43,4 +43,33 @@ describe('Result Failed Testing', function () {
   it('pattern: abc, string: abab', function () {
     expect(match('abc', 'abab')).to.be.equal(false);
   })
+
+  // abnormal
+  // null
+  it('pattern: abc, string: null', function () {
+    expect(match('abc', null)).to.be.equal(false);
+  })
+  it('pattern: 0, string: null', function () {
+    expect(match('abc', null)).to.be.equal(false);
+  })
+  it("pattern: 'null', string: null", function () {
+    expect(match('null', null)).to.be.equal(false);
+  })
+  // undefined
+  it('pattern: abc, string: undefined', function () {
+    expect(match('abc', void 0)).to.be.equal(false);
+  })
+  it('pattern: 0, string: undefined', function () {
+    expect(match(0, void 0)).to.be.equal(false);
+  })
+  it("pattern: 'undefined', string: undefined", function () {
+    expect(match('undefined', void 0)).to.be.equal(false);
+  })
+  // other base object in relam exclude(string and number)
+  it("pattern: Symbol, string: abc", function () {
+    expect(match(Symbol('1'), 'abc')).to.be.equal(false);
+  })
+  it("pattern: [1], string: abc", function () {
+    expect(match([1], 'abc')).to.be.equal(false);
+  })
 });
