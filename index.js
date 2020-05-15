@@ -1,4 +1,7 @@
 module.exports.match = function match(pattern, string) {
+  if(pattern === '' && typeof string !== 'undefined' && string !== null){
+    return true
+  }
   // 全部状态
   const state = pattern.split('');
   // 记录状态迁移游标

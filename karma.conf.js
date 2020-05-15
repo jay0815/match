@@ -16,6 +16,7 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
+      // 'index.js', // if open this line, match function will be filled in test golab environment, so we can use it without module.exports and require
       'test/**.js'
     ],
 
@@ -28,15 +29,21 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      'test/**.js': [ 'browserify' ]
+      'test/**.js': [ 'browserify' ],
+      'index.js': 'coverage'
     },
-
-
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress'],
+    reporters: ['progress', 'coverage'],
+
+    coverageReporter: {
+      type : 'html',
+      dir : 'coverage'
+    },
+    //
+    // reporters: ['progress'],
 
 
     // web server port
@@ -57,7 +64,7 @@ module.exports = function(config) {
 
     browsers: ['ChromeHeadless'],
 
-    plugins: ['karma-mocha', 'karma-browserify', 'karma-chrome-launcher'],
+    plugins: ['karma-mocha', 'karma-browserify', 'karma-chrome-launcher', 'karma-coverage'],
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
