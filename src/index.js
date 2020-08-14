@@ -1,4 +1,4 @@
-module.exports.match = function match(pattern, string) {
+export const match = (pattern, string) => {
   if(
     typeof pattern === 'symbol' ||  typeof pattern === 'undefined' ||
     pattern === null ||  typeof (pattern+'') !== 'string' ||

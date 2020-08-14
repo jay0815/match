@@ -6,20 +6,29 @@
   "author": "JackQ",
   "license": "MIT",
   "private": false,
-  "dependencies": {
-    "browserify": "^16.5.1",
+  "devDependencies": {
+    "@babel/core": "^7.11.1",
+    "@babel/preset-env": "^7.11.0",
+    "babel-loader": "^8.1.0",
+    "babel-plugin-istanbul": "^6.0.0",
     "chai": "^4.2.0",
-    "karma": "^5.0.5",
-    "karma-browserify": "^7.0.0",
+    "codecov": "^3.7.2",
+    "karma": "^5.1.1",
+    "karma-chai": "^0.1.0",
     "karma-chrome-launcher": "^3.1.0",
-    "karma-coverage": "^2.0.2",
-    "karma-jasmine": "^3.1.1",
+    "karma-coverage-istanbul-reporter": "^3.0.3",
     "karma-mocha": "^2.0.1",
-    "mocha": "^7.1.2",
+    "karma-mocha-reporter": "^2.2.5",
+    "karma-webpack": "^4.0.2",
+    "mocha": "^8.1.1",
     "puppeteer": "^3.0.4",
-    "watchify": "^3.11.1"
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
   },
   "scripts": {
-    "coverage": "./node_modules/karma/bin/karma start"
+    "coverage": "karma start ./karma.conf.js",
+    "report": "webpack-dev-server --env.report --config webpack.config.js",
+    "codecov": "export CODECOV_TOKEN=53967ef3-fec9-42e9-bdcc-c30b1130ac10 && ./node_modules/.bin/codecov"
   }
 }

@@ -1,5 +1,9 @@
-var match = require("../index.js").match;
-var expect = require("chai").expect;
+import {
+  match
+} from '../src/index.js';
+import {
+  expect
+} from 'chai';
 
 describe("test match", () => {
   it("has import match", () => {
